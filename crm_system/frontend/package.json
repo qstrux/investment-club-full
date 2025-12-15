@@ -1,0 +1,41 @@
+{
+    "name": "crm-frontend",
+    "version": "1.0.0",
+    "description": "三层漏斗CRM系统 - 前端应用",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "type-check": "tsc --noEmit",
+        "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\""
+    },
+    "dependencies": {
+        "next": "14.0.4",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "@ant-design/icons": "^5.2.6",
+        "@ant-design/nextjs-registry": "^1.0.0",
+        "antd": "^5.12.2",
+        "axios": "^1.6.2",
+        "dayjs": "^1.11.10",
+        "echarts": "^5.4.3",
+        "echarts-for-react": "^3.0.2",
+        "zustand": "^4.4.7",
+        "zod": "^3.22.4",
+        "react-query": "^3.39.3"
+    },
+    "devDependencies": {
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "typescript": "^5",
+        "eslint": "^8",
+        "eslint-config-next": "14.0.4",
+        "prettier": "^3.1.1",
+        "tailwindcss": "^3.3.0",
+        "autoprefixer": "^10.0.1",
+        "postcss": "^8"
+    }
+}

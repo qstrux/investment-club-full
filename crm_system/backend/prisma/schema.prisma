@@ -1,0 +1,448 @@
+// Prisma Schema文件
+// 数据库配置
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// 客户相关表
+// ============================================
+
+model Customer {
+  id           BigInt   @id @default(autoincrement())
+  customerCode String   @unique @map("customer_code") @db.VarChar(50)
+  
+  // 基本信息
+  name         String   @db.VarChar(100)
+  avatarUrl    String?  @map("avatar_url") @db.VarChar(500)
+  gender       String?  @db.VarChar(10)
+  age          Int?
+  birthDate    DateTime? @map("birth_date") @db.Date
+  
+  // 联系方式
+  wechatId     String?  @map("wechat_id") @db.VarChar(100)
+  whatsapp     String?  @db.VarChar(50)
+  telegram     String?  @db.VarChar(100)
+  email        String?  @db.VarChar(200)
+  phone        String?  @db.VarChar(50)
+  
+  // 地理信息
+  country      String?  @db.VarChar(100)
+  city         String?  @db.VarChar(100)
+  timezone     String?  @db.VarChar(50)
+  language     Json?
+  
+  // 职业信息
+  occupation   String?  @db.VarChar(200)
+  industry     String?  @db.VarChar(100)
+  incomeRange  String?  @map("income_range") @db.VarChar(50)
+  
+  // 投资信息
+  investmentExperience String? @map("investment_experience") @db.VarChar(50)
+  riskPreference       String? @map("risk_preference") @db.VarChar(50)
+  capitalRange         String? @map("capital_range") @db.VarChar(50)
+  tradingPlatform      String? @map("trading_platform") @db.VarChar(100)
+  interests            Json?
+  
+  // 性格特质
+  personalityTraits   Json?    @map("personality_traits")
+  communicationStyle  String?  @map("communication_style") @db.Text
+  decisionStyle       String?  @map("decision_style") @db.VarChar(100)
+  
+  // 客户分层
+  tier                String   @default("C") @db.VarChar(10)
+  personaType         String?  @map("persona_type") @db.VarChar(50)
+  
+  // 评分
+  intentionScore      Int      @default(0) @map("intention_score")
+  engagementScore     Int      @default(0) @map("engagement_score")
+  ltvPrediction       Decimal? @map("ltv_prediction") @db.Decimal(12, 2)
+  
+  // 客户旅程
+  currentStage        String   @default("Awareness") @map("current_stage") @db.VarChar(50)
+  
+  // 来源信息
+  sourceChannel       String?  @map("source_channel") @db.VarChar(100)
+  referrerId          BigInt?  @map("referrer_id")
+  referrer            Customer? @relation("CustomerReferrals", fields: [referrerId], references: [id])
+  referrals           Customer[] @relation("CustomerReferrals")
+  
+  // 负责人
+  assignedEmployeeId  BigInt?  @map("assigned_employee_id")
+  assignedEmployee    Employee? @relation(fields: [assignedEmployeeId], references: [id])
+  assignedAt          DateTime? @map("assigned_at")
+  
+  // 状态
+  status              String   @default("active") @db.VarChar(20)
+  blacklistReason     String?  @map("blacklist_reason") @db.Text
+  riskFlags           Json?    @map("risk_flags")
+  
+  // 时间戳
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+  lastContactAt       DateTime? @map("last_contact_at")
+  
+  // 关联
+  tags                CustomerTag[]
+  journey             CustomerJourney[]
+  funnelTofu          FunnelTofu[]
+  funnelMofu          FunnelMofu[]
+  funnelBofu          FunnelBofu[]
+  deposits            Deposit[]
+  withdrawals         Withdrawal[]
+  conversations       Conversation[]
+  
+  @@index([customerCode])
+  @@index([assignedEmployeeId])
+  @@index([tier])
+  @@index([currentStage])
+  @@index([intentionScore])
+  @@index([createdAt])
+  @@map("customers")
+}
+
+model Tag {
+  id              BigInt   @id @default(autoincrement())
+  name            String   @unique @db.VarChar(50)
+  category        String   @db.VarChar(50)
+  color           String?  @db.VarChar(20)
+  icon            String?  @db.VarChar(50)
+  description     String?  @db.Text
+  isSystem        Boolean  @default(false) @map("is_system")
+  displayOrder    Int      @default(0) @map("display_order")
+  createdAt       DateTime @default(now()) @map("created_at")
+  
+  customerTags    CustomerTag[]
+  
+  @@index([category])
+  @@map("tags")
+}
+
+model CustomerTag {
+  id         BigInt   @id @default(autoincrement())
+  customerId BigInt   @map("customer_id")
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  tagId      BigInt   @map("tag_id")
+  tag        Tag      @relation(fields: [tagId], references: [id])
+  taggedBy   BigInt?  @map("tagged_by")
+  taggedAt   DateTime @default(now()) @map("tagged_at")
+  isAuto     Boolean  @default(false) @map("is_auto")
+  
+  @@unique([customerId, tagId])
+  @@index([customerId])
+  @@index([tagId])
+  @@map("customer_tags")
+}
+
+model CustomerJourney {
+  id            BigInt   @id @default(autoincrement())
+  customerId    BigInt   @map("customer_id")
+  customer      Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  fromStage     String   @map("from_stage") @db.VarChar(50)
+  toStage       String   @map("to_stage") @db.VarChar(50)
+  durationDays  Int?     @map("duration_days")
+  triggerEvent  String?  @map("trigger_event") @db.VarChar(100)
+  notes         String?  @db.Text
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  @@index([customerId])
+  @@index([toStage])
+  @@index([createdAt])
+  @@map("customer_journey")
+}
+
+// ============================================
+// 员工相关表
+// ============================================
+
+model Employee {
+  id              BigInt   @id @default(autoincrement())
+  employeeCode    String   @unique @map("employee_code") @db.VarChar(50)
+  name            String   @db.VarChar(100)
+  avatarUrl       String?  @map("avatar_url") @db.VarChar(500)
+  email           String   @unique @db.VarChar(200)
+  phone           String?  @db.VarChar(50)
+  username        String   @unique @db.VarChar(50)
+  passwordHash    String   @map("password_hash") @db.VarChar(255)
+  role            String   @db.VarChar(50)
+  department      String?  @db.VarChar(100)
+  level           String   @default("新人") @db.VarChar(50)
+  status          String   @default("active") @db.VarChar(20)
+  
+  // 绩效数据（冗余字段）
+  totalCustomers      Int     @default(0) @map("total_customers")
+  activeCustomers     Int     @default(0) @map("active_customers")
+  totalNetDeposit     Decimal @default(0) @map("total_net_deposit") @db.Decimal(15, 2)
+  
+  hiredAt         DateTime? @map("hired_at") @db.Date
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  lastLoginAt     DateTime? @map("last_login_at")
+  
+  // 关联
+  customers       Customer[]
+  kpis            EmployeeKpi[]
+  
+  @@index([employeeCode])
+  @@index([role])
+  @@index([level])
+  @@map("employees")
+}
+
+model EmployeeKpi {
+  id                      BigInt   @id @default(autoincrement())
+  employeeId              BigInt   @map("employee_id")
+  employee                Employee @relation(fields: [employeeId], references: [id])
+  date                    DateTime @db.Date
+  
+  // ToFu KPIs
+  tofuContacts            Int      @default(0) @map("tofu_contacts")
+  tofuRetained            Int      @default(0) @map("tofu_retained")
+  tofuRetentionRate       Decimal? @map("tofu_retention_rate") @db.Decimal(5, 2)
+  
+  // MoFu KPIs
+  mofuQualityConversations Int     @default(0) @map("mofu_quality_conversations")
+  mofuCounterQuestions     Int     @default(0) @map("mofu_counter_questions")
+  mofuAccountsOpened       Int     @default(0) @map("mofu_accounts_opened")
+  
+  // BoFu KPIs
+  bofuDepositsCount       Int      @default(0) @map("bofu_deposits_count")
+  bofuDepositAmount       Decimal  @default(0) @map("bofu_deposit_amount") @db.Decimal(12, 2)
+  bofuWithdrawalAmount    Decimal  @default(0) @map("bofu_withdrawal_amount") @db.Decimal(12, 2)
+  bofuNetDeposit          Decimal  @default(0) @map("bofu_net_deposit") @db.Decimal(12, 2)
+  bofuWithdrawalRate      Decimal? @map("bofu_withdrawal_rate") @db.Decimal(5, 2)
+  
+  overallScore            Decimal? @map("overall_score") @db.Decimal(5, 2)
+  createdAt               DateTime @default(now()) @map("created_at")
+  
+  @@unique([employeeId, date])
+  @@index([employeeId, date])
+  @@index([date])
+  @@map("employee_kpis")
+}
+
+// ============================================
+// 漏斗数据表
+// ============================================
+
+model FunnelTofu {
+  id            BigInt    @id @default(autoincrement())
+  customerId    BigInt    @map("customer_id")
+  customer      Customer  @relation(fields: [customerId], references: [id])
+  employeeId    BigInt    @map("employee_id")
+  employee      Employee  @relation(fields: [employeeId], references: [id])
+  
+  contactDate   DateTime  @map("contact_date") @db.Date
+  sourceChannel String    @map("source_channel") @db.VarChar(100)
+  sourceDetail  String?   @map("source_detail") @db.VarChar(200)
+  joinedGroup   Boolean   @default(false) @map("joined_group")
+  groupName     String?   @map("group_name") @db.VarChar(100)
+  joinedAt      DateTime? @map("joined_at")
+  
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  @@index([customerId])
+  @@index([employeeId])
+  @@index([contactDate])
+  @@map("funnel_tofu")
+}
+
+model FunnelMofu {
+  id                       BigInt    @id @default(autoincrement())
+  customerId               BigInt    @map("customer_id")
+  customer                 Customer  @relation(fields: [customerId], references: [id])
+  employeeId               BigInt?   @map("employee_id")
+  
+  totalConversations       Int       @default(0) @map("total_conversations")
+  highQualityConversations Int       @default(0) @map("high_quality_conversations")
+  totalCounterQuestions    Int       @default(0) @map("total_counter_questions")
+  
+  accountOpened            Boolean   @default(false) @map("account_opened")
+  openedAt                 DateTime? @map("opened_at")
+  accountPlatform          String?   @map("account_platform") @db.VarChar(100)
+  
+  createdAt                DateTime  @default(now()) @map("created_at")
+  updatedAt                DateTime  @updatedAt @map("updated_at")
+
+  @@index([customerId])
+  @@map("funnel_mofu")
+}
+
+model FunnelBofu {
+  id                 BigInt    @id @default(autoincrement())
+  customerId         BigInt    @map("customer_id")
+  customer           Customer  @relation(fields: [customerId], references: [id])
+  employeeId         BigInt?   @map("employee_id")
+  
+  totalDeposits      Decimal   @default(0) @map("total_deposits") @db.Decimal(15, 2)
+  netDeposit         Decimal   @default(0) @map("net_deposit") @db.Decimal(15, 2)
+  depositCount       Int       @default(0) @map("deposit_count")
+  
+  firstDepositAmount Decimal?  @map("first_deposit_amount") @db.Decimal(15, 2)
+  firstDepositAt     DateTime? @map("first_deposit_at")
+  maxDepositAmount   Decimal?  @map("max_deposit_amount") @db.Decimal(15, 2)
+  
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+
+  @@index([customerId])
+  @@map("funnel_bofu")
+}
+
+model Deposit {
+  id           BigInt    @id @default(autoincrement())
+  depositCode  String    @unique @map("deposit_code") @db.VarChar(50)
+  customerId   BigInt    @map("customer_id")
+  customer     Customer  @relation(fields: [customerId], references: [id])
+  employeeId   BigInt    @map("employee_id")
+  
+  amount       Decimal   @db.Decimal(15, 2)
+  currency     String    @default("USD") @db.VarChar(10)
+  depositType  String    @map("deposit_type") @db.VarChar(50) // 首金, 复入金, 大额入金
+  platform     String?   @db.VarChar(100)
+  notes        String?   @db.Text
+  status       String    @default("pending") @db.VarChar(20)
+  
+  depositedAt  DateTime  @default(now()) @map("deposited_at")
+  confirmedAt  DateTime? @map("confirmed_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  @@index([customerId])
+  @@index([employeeId])
+  @@index([depositedAt])
+  @@map("deposits")
+}
+
+model Withdrawal {
+  id             BigInt    @id @default(autoincrement())
+  withdrawalCode String    @unique @map("withdrawal_code") @db.VarChar(50)
+  customerId     BigInt    @map("customer_id")
+  customer       Customer  @relation(fields: [customerId], references: [id])
+  employeeId     BigInt    @map("employee_id")
+  
+  amount         Decimal   @db.Decimal(15, 2)
+  currency       String    @default("USD") @db.VarChar(10)
+  platform       String?   @db.VarChar(100)
+  notes          String?   @db.Text
+  status         String    @default("pending") @db.VarChar(20)
+  
+  requestedAt    DateTime  @default(now()) @map("requested_at")
+  completedAt    DateTime? @map("completed_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  @@index([customerId])
+  @@index([employeeId])
+  @@map("withdrawals")
+}
+
+// ============================================
+// 内容库表
+// ============================================
+
+model Script {
+  id          BigInt   @id @default(autoincrement())
+  scriptCode  String   @unique @map("script_code") @db.VarChar(50)
+  
+  category    String   @db.VarChar(50)
+  subcategory String?  @db.VarChar(50)
+  scenario    String   @db.VarChar(100)
+  level       String   @db.VarChar(20) // 初级, 中级, 高级
+  
+  contentCn   String   @map("content_cn") @db.Text
+  contentEn   String?  @map("content_en") @db.Text
+  purpose     String?  @db.Text
+  followUp    Json?    @map("follow_up")
+  tags        String[]
+  
+  usageCount  Int      @default(0) @map("usage_count")
+  successCount Int     @default(0) @map("success_count")
+  successRate Decimal? @map("success_rate") @db.Decimal(5, 2)
+  
+  createdBy   Int      @map("created_by")
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([category])
+  @@index([scenario])
+  @@index([tags])
+  @@map("scripts")
+}
+
+model Material {
+  id             BigInt   @id @default(autoincrement())
+  materialCode   String   @unique @map("material_code") @db.VarChar(50)
+  
+  type           String   @db.VarChar(20) // image, video, text, mixed
+  category       String   @db.VarChar(50)
+  subcategory    String?  @db.VarChar(50)
+  
+  title          String?  @db.VarChar(200)
+  content        String?  @db.Text
+  mediaUrl       String?  @map("media_url") @db.VarChar(500)
+  thumbnailUrl   String?  @map("thumbnail_url") @db.VarChar(500)
+  caption        String?  @db.Text
+  
+  tags           String[]
+  suitableStages String[] @map("suitable_stages")
+  
+  publishedCount Int      @default(0) @map("published_count")
+  
+  createdBy      Int      @map("created_by")
+  isActive       Boolean  @default(true) @map("is_active")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([type])
+  @@index([category])
+  @@map("materials")
+}
+
+// ============================================
+// 对话记录表
+// ============================================
+
+model Conversation {
+  id          BigInt   @id @default(autoincrement())
+  customerId  BigInt   @map("customer_id")
+  customer    Customer @relation(fields: [customerId], references: [id])
+  employeeId  BigInt   @map("employee_id")
+  
+  startTime   DateTime @map("start_time")
+  endTime     DateTime? @map("end_time")
+  duration    Int?     // 秒
+  
+  summary     String?  @db.Text
+  sentiment   String?  @db.VarChar(20) // positive, neutral, negative
+  tags        String[]
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  events      ConversationEvent[]
+
+  @@index([customerId])
+  @@index([employeeId])
+  @@index([startTime])
+  @@map("conversations")
+}
+
+model ConversationEvent {
+  id             BigInt       @id @default(autoincrement())
+  conversationId BigInt       @map("conversation_id")
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  
+  type           String       @db.VarChar(20) // message, image, system
+  sender         String       @db.VarChar(20) // customer, employee, system
+  content        String       @db.Text
+  timestamp      DateTime
+  
+  @@index([conversationId])
+  @@map("conversation_events")
+}

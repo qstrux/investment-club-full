@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认知升级 - 投资者 21 天认知升级地图</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #0f172a; /* Slate 900 - Deep Navy */
+            --color-accent: #d4af37; /* Metallic Gold */
+            --color-text: #334155;
+            --color-bg-light: #f8fafc;
+        }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--color-text);
+            background-color: var(--color-bg-light);
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+        }
+        /* Custom Button */
+        .btn-gold {
+            background: linear-gradient(to right, #d4af37, #c5a028);
+            color: #0f172a;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(212, 175, 55, 0.5);
+        }
+        /* Curve Animation */
+        .curve-container {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: 70%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="absolute top-0 w-full z-20 py-6">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-white font-bold text-xl tracking-wider serif-font flex items-center gap-2">
+                <i data-lucide="brain-circuit" class="w-6 h-6 text-[#d4af37]"></i>
+                COMPOUND <span class="font-light opacity-70">GROWTH</span>
+            </div>
+            <!-- <a href="#download" class="hidden md:block text-white/80 hover:text-[#d4af37] text-sm font-medium transition">获取地图</a> -->
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center relative">
+        <div class="hero-pattern"></div>
+        
+        <!-- Abstract Curve Graphic (Background) -->
+        <svg class="curve-container hidden lg:block" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0,100 Q50,100 70,50 T100,0" fill="none" stroke="#d4af37" stroke-width="0.5" />
+            <path d="M0,100 Q50,100 70,50 T100,0" fill="url(#grad1)" opacity="0.2" />
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#0f172a;stop-opacity:0" />
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10 pt-20">
+            <div class="text-white space-y-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#d4af37]/30 bg-[#d4af37]/10 text-[#d4af37] text-xs font-medium tracking-wide fade-in-up">
+                    <span class="w-2 h-2 rounded-full bg-[#d4af37]"></span>
+                    面向复利成长者
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight fade-in-up delay-100">
+                    认知，是你能复制的<br>
+                    <span class="text-[#d4af37]">最大复利</span>。
+                </h1>
+                
+                <p class="text-lg md:text-xl text-slate-300 font-light leading-relaxed fade-in-up delay-200 border-l-2 border-[#d4af37]/50 pl-6">
+                    真正的财富增长，不来自单次暴击，<br class="hidden md:block">
+                    而来自认知能力持续升级的复利。
+                </p>
+                
+                <div class="pt-4 fade-in-up delay-300">
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-lg mb-8">
+                        <p class="text-sm text-slate-300 mb-4">
+                            下载<strong>《投资者 21 天认知升级地图》</strong>，构建你的长期框架、提升判断质量、让成长速度开始指数化。
+                        </p>
+                        <form class="flex flex-col sm:flex-row gap-3" onsubmit="event.preventDefault(); alert('感谢订阅！认知地图已发送至您的邮箱。');">
+                            <input type="email" placeholder="输入您的邮箱地址..." required
+                                class="flex-1 px-4 py-3 rounded bg-white/10 border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition">
+                            <button type="submit" class="btn-gold px-8 py-3 rounded font-bold text-sm uppercase tracking-wide whitespace-nowrap">
+                                👉 开始 21 天升级
+                            </button>
+                        </form>
+                        <p class="text-xs text-slate-500 mt-3 flex items-center gap-1">
+                            <i data-lucide="lock" class="w-3 h-3"></i> 尊重隐私，无垃圾邮件。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Visual: The Concept -->
+            <div class="hidden md:flex justify-center fade-in-up delay-300">
+                <div class="relative w-80 h-[450px] bg-white rounded-sm shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition duration-500">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-[#d4af37]"></div>
+                    <div class="uppercase text-xs font-bold tracking-widest text-slate-400 mb-6">Cognitive Map</div>
+                    <h3 class="serif-font text-2xl font-bold text-slate-800 mb-2">21 天认知<br>升级地图</h3>
+                    <p class="text-xs text-slate-500 mb-8">For Compound Growth Seekers</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 p-3 bg-slate-50 rounded">
+                            <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs">01</div>
+                            <div>
+                                <div class="text-xs font-bold text-slate-700">清理噪音 (Debug)</div>
+                                <div class="text-[10px] text-slate-400">剔除 5 种认知偏差</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-slate-50 rounded">
+                            <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs">02</div>
+                            <div>
+                                <div class="text-xs font-bold text-slate-700">系统搭建 (System)</div>
+                                <div class="text-[10px] text-slate-400">植入顶级思维模型</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-[#fdf8e6] border border-[#d4af37]/20 rounded">
+                            <div class="w-8 h-8 rounded-full bg-[#d4af37] flex items-center justify-center text-[#0f172a] font-bold text-xs">03</div>
+                            <div>
+                                <div class="text-xs font-bold text-[#0f172a]">复利启动 (Scale)</div>
+                                <div class="text-[10px] text-[#8a7018]">资产与认知同步增长</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-8 left-8 right-8 text-center">
+                        <div class="text-[10px] text-slate-400 uppercase tracking-widest">Guidebook PDF</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Agitation Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">为什么大多数人的努力是线性的？</h2>
+                <div class="w-20 h-1 bg-[#d4af37] mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Linear Growth -->
+                <div class="p-8 border border-slate-100 rounded-lg hover:shadow-lg transition group">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="activity" class="text-slate-400"></i>
+                        <h3 class="font-bold text-slate-600">普通投资者</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+                            <span class="text-sm"><strong>依赖运气：</strong> 偶尔盈利，但不知道如何复制，最终凭实力亏回去。</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+                            <span class="text-sm"><strong>单次博弈：</strong> 追求一把梭哈的快感，缺乏长期风控。</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-600">
+                            <i data-lucide="x-circle" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+                            <span class="text-sm"><strong>信息焦虑：</strong> 每天看新闻，却越看越迷茫，不仅伤神还亏钱。</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Compound Growth -->
+                <div class="p-8 bg-[#0f172a] text-white rounded-lg shadow-xl transform md:-translate-y-4 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i data-lucide="trending-up" class="w-32 h-32"></i>
+                    </div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="layers" class="text-[#d4af37]"></i>
+                        <h3 class="font-bold text-white">复利成长者</h3>
+                    </div>
+                    <ul class="space-y-4 relative z-10">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-[#d4af37] shrink-0 mt-0.5"></i>
+                            <span class="text-sm text-slate-300"><strong class="text-white">依赖系统：</strong> 即使运气不好，也能控制下行风险，活得更久。</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-[#d4af37] shrink-0 mt-0.5"></i>
+                            <span class="text-sm text-slate-300"><strong class="text-white">长期主义：</strong> 追求可重复、可叠加的复利效应，做时间的朋友。</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-[#d4af37] shrink-0 mt-0.5"></i>
+                            <span class="text-sm text-slate-300"><strong class="text-white">结构化认知：</strong> 建立思维模型，一眼看透本质，过滤噪音。</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 p-6 bg-slate-50 border-l-4 border-[#d4af37] rounded-r">
+                <p class="text-slate-700 italic text-center font-medium serif-font">
+                    "如果你不知道自己为什么赚到了钱，那你早晚会不知道为什么亏掉它。" 
+                </p>
+                <p class="text-right text-xs text-slate-500 mt-2">— 投资认知铁律</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">这不仅是一份文档，而是你大脑的<span class="text-[#d4af37] serif-font">OS 升级包</span></h2>
+                <p class="text-slate-500">21 天，三个阶段，重塑你的投资决策系统</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded shadow-sm border-t-2 border-slate-200 hover:border-[#d4af37] transition">
+                    <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mb-4 text-slate-700">
+                        <i data-lucide="eraser"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Week 1: 清理噪音</h3>
+                    <p class="text-sm text-slate-500 mb-4">识别并剔除 5 种常见的投资认知偏差。建立“信息过滤器”，只关注高信噪比源头。</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded shadow-sm border-t-2 border-slate-200 hover:border-[#d4af37] transition">
+                    <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mb-4 text-slate-700">
+                        <i data-lucide="component"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Week 2: 架构搭建</h3>
+                    <p class="text-sm text-slate-500 mb-4">植入查理·芒格推崇的思维模型。构建属于你自己的“投资检查清单”。</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded shadow-sm border-t-2 border-slate-200 hover:border-[#d4af37] transition">
+                    <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mb-4 text-slate-700">
+                        <i data-lucide="bar-chart-2"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Week 3: 复利启动</h3>
+                    <p class="text-sm text-slate-500 mb-4">学会复盘：如何将每一次决策转化为经验值。设计“飞轮效应”，让资产与认知同步增长。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-bold text-slate-900">他们已经开始了认知复利之旅</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-6 bg-slate-50 rounded-lg">
+                    <div class="flex gap-1 text-[#d4af37] mb-3">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4">"以前我总想找下一个百倍币，现在我专注于优化我的决策系统。这份地图帮我省下的试错成本，价值连城。"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center text-xs font-bold text-white">A</div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-900">Alex L.</div>
+                            <div class="text-[10px] text-slate-400">互联网产品经理 / 5 年投资经验</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-slate-50 rounded-lg">
+                    <div class="flex gap-1 text-[#d4af37] mb-3">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4">"非常硬核。没有废话，全是底层逻辑。第 14 天的‘反脆弱’模型彻底改变了我的持仓逻辑。"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center text-xs font-bold text-white">C</div>
+                        <div>
+                            <div class="text-xs font-bold text-slate-900">陈先生</div>
+                            <div class="text-[10px] text-slate-400">独立开发者</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="py-20 bg-[#0f172a] text-center px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30"></div>
+        
+        <div class="relative z-10 max-w-2xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 serif-font">
+                种一棵树最好的时间是十年前，<br>其次是<span class="text-[#d4af37]">现在</span>。
+            </h2>
+            <p class="text-slate-400 mb-8 text-sm md:text-base">
+                认知的树，一旦种下，就会自动生长。<br>
+                不要让低维度的勤奋，掩盖了战略上的懒惰。
+            </p>
+            
+            <button onclick="document.querySelector('input[type=email]').focus()" class="btn-gold px-10 py-4 rounded font-bold text-lg uppercase tracking-wide shadow-lg inline-flex items-center gap-2">
+                <span>立即下载 21 天认知升级地图</span>
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+            <p class="text-xs text-slate-600 mt-6">© 2024 Compound Growth. All rights reserved.</p>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

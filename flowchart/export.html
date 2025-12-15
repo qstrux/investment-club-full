@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Flowchart</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        #flowchart {
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="flowchart" width="250" height="1900" viewBox="0 0 250 1900">
+        <defs>
+            <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="2.5" orient="auto">
+                <polygon points="0 0, 6 2.5, 0 5" fill="#333" />
+            </marker>
+
+            <linearGradient id="darkBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#2B4C8F;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1E3A6B;stop-opacity:1" />
+            </linearGradient>
+
+            <linearGradient id="brownDiamond" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#8B5A3C;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#6B4423;stop-opacity:1" />
+            </linearGradient>
+
+            <linearGradient id="greenEnd" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#2D7A5F;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1F5A45;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+
+        <!-- Welcome -->
+        <g data-step="1">
+            <rect x="50" y="5" width="150" height="28" rx="14" fill="url(#darkBlue)" stroke="#1E3A6B"
+                stroke-width="1" />
+            <text x="125" y="16" text-anchor="middle" fill="white" font-size="8" font-weight="600">Welcome to</text>
+            <text x="125" y="26" text-anchor="middle" fill="white" font-size="8" font-weight="600">Our Application
+                Portal</text>
+        </g>
+        <line x1="125" y1="33" x2="125" y2="48" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="2">
+            <rect x="50" y="48" width="150" height="24" rx="2" fill="#2B4C8F" stroke="#1E3A6B" stroke-width="1" />
+            <text x="125" y="63" text-anchor="middle" fill="white" font-size="8" font-weight="600">Step 1: Account
+                Registration</text>
+        </g>
+        <line x1="125" y1="72" x2="125" y2="85" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="3">
+            <rect x="35" y="85" width="180" height="24" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="100" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">High
+                School/Previous</text>
+            <text x="125" y="108" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Organization
+                Detail</text>
+        </g>
+        <line x1="125" y1="109" x2="125" y2="122" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="4">
+            <rect x="35" y="122" width="180" height="28" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="133" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Complete
+                Registration Form</text>
+            <text x="125" y="143" text-anchor="middle" fill="#333" font-size="6.5">(Personal Info + Contact
+                Details)</text>
+        </g>
+        <line x1="125" y1="150" x2="125" y2="163" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="5">
+            <rect x="50" y="163" width="150" height="24" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="178" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Receive
+                Verification Email</text>
+        </g>
+        <line x1="125" y1="187" x2="125" y2="200" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="6">
+            <rect x="45" y="200" width="160" height="24" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="215" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Click Link to
+                Verify Account</text>
+        </g>
+        <line x1="125" y1="224" x2="125" y2="240" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="7">
+            <rect x="35" y="240" width="180" height="24" rx="2" fill="#2B4C8F" stroke="#1E3A6B" stroke-width="1" />
+            <text x="125" y="255" text-anchor="middle" fill="white" font-size="8" font-weight="600">Step 2: Submit
+                Application & Fee</text>
+        </g>
+        <line x1="125" y1="264" x2="125" y2="277" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="8">
+            <rect x="35" y="277" width="180" height="28" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="288" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Complete
+                Application</text>
+            <text x="125" y="298" text-anchor="middle" fill="#333" font-size="6.5">(Passport or Driver's License)</text>
+        </g>
+        <line x1="125" y1="305" x2="125" y2="318" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="9">
+            <rect x="30" y="318" width="190" height="28" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="329" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Upload Proof of
+                Address</text>
+            <text x="125" y="339" text-anchor="middle" fill="#333" font-size="6.5">(Utility Bill or Bank
+                Statement)</text>
+        </g>
+        <line x1="125" y1="346" x2="125" y2="359" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="10">
+            <rect x="30" y="359" width="190" height="28" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="370" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Submit Form with
+                ID</text>
+            <text x="125" y="380" text-anchor="middle" fill="#333" font-size="6.5">(All Information Must Match
+                ID)</text>
+        </g>
+        <line x1="125" y1="387" x2="125" y2="400" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="11">
+            <rect x="45" y="400" width="160" height="28" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="411" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Pay Application
+                Fee</text>
+            <text x="125" y="421" text-anchor="middle" fill="#333" font-size="6.5">(All 48 Hour Processing)</text>
+        </g>
+        <line x1="125" y1="428" x2="125" y2="448" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="12">
+            <path d="M 125 448 L 165 478 L 125 508 L 85 478 Z" fill="url(#brownDiamond)" stroke="#6B4423"
+                stroke-width="1" />
+            <text x="125" y="476" text-anchor="middle" fill="white" font-size="8" font-weight="600">Approved?</text>
+            <text x="125" y="485" text-anchor="middle" fill="white" font-size="6.5">(within 48h)</text>
+        </g>
+
+        <line x1="85" y1="478" x2="40" y2="478" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+        <text x="65" y="474" text-anchor="middle" fill="#C00" font-size="7" font-weight="600">No</text>
+
+        <g data-step="13">
+            <rect x="5" y="463" width="35" height="30" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="22.5" y="473" text-anchor="middle" fill="#333" font-size="6" font-weight="500">Review</text>
+            <text x="22.5" y="481" text-anchor="middle" fill="#333" font-size="6" font-weight="500">Feedback</text>
+            <text x="22.5" y="489" text-anchor="middle" fill="#333" font-size="5.5">(Make</text>
+            <text x="22.5" y="495" text-anchor="middle" fill="#333" font-size="5.5">Corrections)</text>
+        </g>
+
+        <path d="M 22.5 463 L 22.5 414 L 45 414" stroke="#333" stroke-width="1" fill="none" marker-end="url(#arrowhead)"
+            stroke-dasharray="2,2" />
+
+        <line x1="125" y1="508" x2="125" y2="530" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+        <text x="135" y="520" text-anchor="start" fill="#0A0" font-size="7" font-weight="600">Yes</text>
+
+        <g data-step="14">
+            <rect x="50" y="530" width="150" height="24" rx="2" fill="#2B4C8F" stroke="#1E3A6B" stroke-width="1" />
+            <text x="125" y="545" text-anchor="middle" fill="white" font-size="8" font-weight="600">Step 3: Sign
+                Agreement</text>
+        </g>
+        <line x1="125" y1="554" x2="125" y2="567" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="15">
+            <rect x="30" y="567" width="190" height="24" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="582" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Receive Regulatory
+                Email with Link</text>
+        </g>
+        <line x1="125" y1="591" x2="125" y2="604" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="16">
+            <rect x="20" y="604" width="210" height="28" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="615" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Review and Sign
+                Management</text>
+            <text x="125" y="625" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">& Funds Sharing
+                Agreement</text>
+        </g>
+        <line x1="125" y1="632" x2="125" y2="645" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="17">
+            <rect x="35" y="645" width="180" height="28" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="656" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Review Central
+                Power</text>
+            <text x="125" y="666" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">of Attorney
+                (POA)</text>
+        </g>
+        <line x1="125" y1="673" x2="125" y2="686" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="18">
+            <rect x="30" y="686" width="190" height="24" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="701" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Sign Electronically
+                via DocuSign</text>
+        </g>
+        <line x1="125" y1="710" x2="125" y2="728" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="19">
+            <rect x="45" y="728" width="160" height="24" rx="2" fill="#2B4C8F" stroke="#1E3A6B" stroke-width="1" />
+            <text x="125" y="743" text-anchor="middle" fill="white" font-size="8" font-weight="600">Step 4: Fund Your
+                Account</text>
+        </g>
+        <line x1="125" y1="752" x2="125" y2="772" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="20">
+            <path d="M 125 772 L 165 802 L 125 832 L 85 802 Z" fill="url(#brownDiamond)" stroke="#6B4423"
+                stroke-width="1" />
+            <text x="125" y="800" text-anchor="middle" fill="white" font-size="8" font-weight="600">Choose</text>
+            <text x="125" y="809" text-anchor="middle" fill="white" font-size="7">Funding Method</text>
+        </g>
+
+        <line x1="85" y1="802" x2="40" y2="802" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+        <g data-step="21">
+            <rect x="5" y="782" width="35" height="40" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="22.5" y="794" text-anchor="middle" fill="#333" font-size="6.5" font-weight="500">Check/</text>
+            <text x="22.5" y="802" text-anchor="middle" fill="#333" font-size="6.5" font-weight="500">Debit</text>
+            <text x="22.5" y="810" text-anchor="middle" fill="#333" font-size="5.5">(No. Bill</text>
+            <text x="22.5" y="817" text-anchor="middle" fill="#333" font-size="5.5">Scan Dep.</text>
+            <text x="22.5" y="824" text-anchor="middle" fill="#333" font-size="5.5">Slip)</text>
+        </g>
+
+        <line x1="165" y1="802" x2="210" y2="802" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+        <g data-step="23">
+            <rect x="210" y="782" width="35" height="40" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="227.5" y="794" text-anchor="middle" fill="#333" font-size="6.5" font-weight="500">Wire</text>
+            <text x="227.5" y="802" text-anchor="middle" fill="#333" font-size="6.5" font-weight="500">Transfer</text>
+            <text x="227.5" y="810" text-anchor="middle" fill="#333" font-size="5.5">(Max:</text>
+            <text x="227.5" y="817" text-anchor="middle" fill="#333" font-size="5.5">$25,000</text>
+            <text x="227.5" y="824" text-anchor="middle" fill="#333" font-size="5.5">per trans.)</text>
+        </g>
+
+        <line x1="125" y1="832" x2="125" y2="858" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+        <g data-step="22">
+            <rect x="80" y="858" width="90" height="36" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="870" text-anchor="middle" fill="#333" font-size="7" font-weight="500">ACH Transfer</text>
+            <text x="125" y="879" text-anchor="middle" fill="#333" font-size="6">(Max: $10,000/</text>
+            <text x="125" y="887" text-anchor="middle" fill="#333" font-size="6">transaction)</text>
+        </g>
+
+        <path d="M 22.5 822 L 22.5 950 L 80 950" stroke="#333" stroke-width="1" fill="none"
+            marker-end="url(#arrowhead)" />
+        <line x1="125" y1="894" x2="125" y2="950" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+        <path d="M 227.5 822 L 227.5 950 L 170 950" stroke="#333" stroke-width="1" fill="none"
+            marker-end="url(#arrowhead)" />
+
+        <g data-step="24">
+            <rect x="45" y="950" width="160" height="24" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="965" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Funds Received &
+                Confirmed</text>
+        </g>
+        <line x1="125" y1="974" x2="125" y2="990" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="25">
+            <rect x="50" y="990" width="150" height="24" rx="2" fill="#2B4C8F" stroke="#1E3A6B" stroke-width="1" />
+            <text x="125" y="1005" text-anchor="middle" fill="white" font-size="8" font-weight="600">Step 5: Welcome
+                Call</text>
+        </g>
+        <line x1="125" y1="1014" x2="125" y2="1027" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="26">
+            <rect x="45" y="1027" width="160" height="24" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="1042" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Advisor Team
+                Introduction</text>
+        </g>
+        <line x1="125" y1="1051" x2="125" y2="1064" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="27">
+            <rect x="50" y="1064" width="150" height="24" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="1079" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Digital Goal
+                Assessment</text>
+        </g>
+        <line x1="125" y1="1088" x2="125" y2="1101" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="28">
+            <rect x="20" y="1101" width="210" height="28" rx="2" fill="#E8E5F2" stroke="#9B8FC4" stroke-width="1" />
+            <text x="125" y="1112" text-anchor="middle" fill="#333" font-size="7.5" font-weight="500">Personalized
+                Investment</text>
+            <text x="125" y="1122" text-anchor="middle" fill="#333" font-size="7.5"
+                font-weight="500">Recommendation</text>
+        </g>
+        <line x1="125" y1="1129" x2="125" y2="1145" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)" />
+
+        <g data-step="29">
+            <ellipse cx="125" cy="1165" rx="75" ry="22" fill="url(#greenEnd)" stroke="#1F5A45" stroke-width="1" />
+            <text x="125" y="1169" text-anchor="middle" fill="white" font-size="9" font-weight="700">Welcome to the
+                Club!</text>
+        </g>
+    </svg>
+</body>
+
+</html>

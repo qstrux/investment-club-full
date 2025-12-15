@@ -1,0 +1,163 @@
+:root {
+    --primary-color: #00d2ff;
+    --text-color: #ffffff;
+    --bg-color: #000000;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #111;
+    font-family: 'Inter', sans-serif;
+}
+
+.stage {
+    width: 100vh;
+    /* 9:16 aspect ratio roughly in landscape monitor? No, let's target specific resolution */
+    height: 100vh;
+    /* Simulate 9:16 on a screen by centering it */
+    max-width: 60.75vh;
+    /* 1080 / 1920 * 100vh */
+    margin: 0 auto;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.background {
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out;
+    filter: brightness(0.6);
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    z-index: 10;
+}
+
+#main-text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+#sub-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #eee;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out 0.2s;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+/* Animation Classes */
+.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+#progress-bar-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 20;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--primary-color);
+    transition: width 0.1s linear;
+}
+
+#watermark {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 15;
+}
+
+/* Keyframes for subtle zoom effect on BG */
+@keyframes zoomIn {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.zoom-effect {
+    animation: zoomIn 20s ease-out forwards;
+}
+
+#start-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: opacity 0.5s;
+}
+
+#start-btn {
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    background: var(--primary-color);
+    border: none;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+    transition: transform 0.2s;
+}
+
+#start-btn:hover {
+    transform: scale(1.05);
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}

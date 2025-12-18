@@ -22,3 +22,6 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Ignored submodules/clones
+gary_club_clone/
